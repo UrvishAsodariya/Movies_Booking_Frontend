@@ -1,10 +1,31 @@
+import axios from 'axios'
 import React from 'react'
 import Footer from '../Footer'
 import Header from '../Header'
 import PageLoader from '../PageLoader'
 import Ticket_Search from '../Ticket_Search'
-
+import { useState } from 'react'
 const Sports = () => {
+
+    const [sportname, setsportname] = useState([]);
+    const [date, setdata] = useState([]);
+    const [address, etaddress] = useState([]);
+    const [month, setmonth] = useState([]);
+
+    axios.get('http://localhost:2000/sportdata', {
+
+    })
+        .then(function (response) {
+            // handle success
+            console.log(response.data.data);
+            setsportname(response.data.data);
+            // window.location.href = "/Login"
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+
     return (
         <>
             {/* <PageLoader/> */}
@@ -297,266 +318,35 @@ const Sports = () => {
                                     </div>
                                 </div>
                                 <div className="row justify-content-center">
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports01.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
+                                    {sportname.map((value) => {
+                                        return (
+                                            <>
+
+                                                <div className="col-sm-6 col-lg-4">
+                                                    <div className="sports-grid">
+                                                        <div className="movie-thumb c-thumb">
+                                                            <a href="sport-details.html">
+                                                                <img src="assets/images/sports/sports01.jpg" alt="sports" />
+                                                            </a>
+                                                            <div className="event-date">
+                                                                <h6 className="date-title">{value.date}</h6>
+                                                                <span>{value.month}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="movie-content bg-one">
+                                                            <h5 className="title m-0">
+                                                                <a href="sport-details.html">{value.sportname}</a>
+                                                            </h5>
+                                                            <div className="movie-rating-percent">
+                                                                <span>{value.address}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">football league tournament</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports02.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">world cricket league 2020</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports03.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">basket ball tournament 2020</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports04.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">Football League
-                                                        Tournament</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports05.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Basketball
-                                                        League 2020</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports06.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Golf
-                                                        League 2020</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports07.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Basketball
-                                                        League 2020</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports08.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Badminton
-                                                        Tournament</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports09.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">Digital Economy
-                                                        Conference</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports10.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Football
-                                                        League 2020</a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports11.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Bikeracing
-                                                        League </a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6 col-lg-4">
-                                        <div className="sports-grid">
-                                            <div className="movie-thumb c-thumb">
-                                                <a href="sport-details.html">
-                                                    <img src="assets/images/sports/sports12.jpg" alt="sports" />
-                                                </a>
-                                                <div className="event-date">
-                                                    <h6 className="date-title">28</h6>
-                                                    <span>Dec</span>
-                                                </div>
-                                            </div>
-                                            <div className="movie-content bg-one">
-                                                <h5 className="title m-0">
-                                                    <a href="sport-details.html">World Bikeracing League </a>
-                                                </h5>
-                                                <div className="movie-rating-percent">
-                                                    <span>327 Montague Street</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </>
+                                        )
+                                    })}
+                                   
                                 </div>
                                 <div className="pagination-area text-center">
                                     <a href="#0"><i className="fas fa-angle-double-left" /><span>Prev</span></a>

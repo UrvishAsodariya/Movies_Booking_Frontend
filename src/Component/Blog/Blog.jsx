@@ -2,8 +2,31 @@ import React from 'react'
 import Footer from '../Footer'
 import Header from '../Header'
 import PageLoader from '../PageLoader'
+import { useState } from 'react'
+import axios from 'axios'
 
 const Blog = () => {
+
+    const [blogname, setblogname] = useState([]);
+    const [addname, setaddname] = useState([]);
+    const [date, setdate] = useState([]);
+    const [view, setview] = useState([]);
+    const [description, setdescription] = useState([]);
+
+    axios.get('http://localhost:2000/blogdata', {
+
+    })
+        .then(function (response) {
+            // handle success
+            console.log(response.data.data);
+            setblogname(response.data.data);
+            // window.location.href = "/Login"
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+
     return (
         <>
             {/* <PageLoader /> */}
@@ -15,7 +38,7 @@ const Blog = () => {
                         <h2 className="title">blog - 01</h2>
                         <ul className="breadcrumb">
                             <li>
-                                <a href="index.html">
+                                <a href="Home">
                                     Home
                                 </a>
                             </li>
@@ -33,156 +56,49 @@ const Blog = () => {
                     <div className="row justify-content-center">
                         <div className="col-lg-8 mb-50 mb-lg-0">
                             <article>
-                                <div className="post-item">
-                                    <div className="post-thumb">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog01.jpg" alt="blog" />
-                                        </a>
-                                    </div>
-                                    <div className="post-content">
-                                        <div className="post-header">
-                                            <h4 className="title">
-                                                <a href="blog-details.html">
-                                                    Increase Event Ticket Sales For Film Production With the Right Advertising Strategies
-                                                </a>
-                                            </h4>
-                                            <div className="meta-post">
-                                                <a href="#0" className="mr-4"><i className="flaticon-conversation" />20 Comments</a>
-                                                <a href="#0"><i className="flaticon-view" />466 View</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac cursus leo. Nullam dolor nunc, hendrerit non velit id, pharetra viverra elit.
-                                            </p>
-                                        </div>
-                                        <div className="entry-content">
-                                            <div className="left">
-                                                <span className="date">Dece 15, 2020 BY </span>
-                                                <div className="authors">
-                                                    <div className="thumb">
-                                                        <a href="#0"><img src="assets/images/blog/author.jpg" alt="#0" /></a>
+                                {blogname.map((value) => {
+                                    return (
+                                        <>
+
+                                            <div className="post-item">
+                                                <div className="post-thumb">
+                                                    <a href="blog-details.html">
+                                                        <img src="assets/images/blog/blog01.jpg" alt="blog" />
+                                                    </a>
+                                                </div>
+                                                <div className="post-content">
+                                                    <div className="post-header">
+                                                        <h4 className="title">
+                                                            <a href="Blog_Detail">
+                                                              {value.blogname}
+                                                            </a>
+                                                        </h4>
+                                                        <div className="meta-post">
+                                                            <a href="#0" className="mr-4"><i className="flaticon-conversation" />20 Comments</a>
+                                                            <a href="#0"><i className="flaticon-view" />{value.view}</a>
+                                                        </div>
+                                                        <p>
+                                                           {value.description}
+                                                        </p>
                                                     </div>
-                                                    <h6 className="title"><a href="#0">Alvin Mcdaniel</a></h6>
+                                                    <div className="entry-content">
+                                                        <div className="left">
+                                                            <span className="date">{value.date} BY </span>
+                                                            <div className="authors">
+                                                                <div className="thumb">
+                                                                    <a href="#0"><img src="assets/images/blog/author.jpg" alt="#0" /></a>
+                                                                </div>
+                                                                <h6 className="title"><a href="#0">{value.addname}</a></h6>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#0" className="buttons">Read More <i className="flaticon-right" /></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <a href="#0" className="buttons">Read More <i className="flaticon-right" /></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post-item">
-                                    <div className="post-thumb">
-                                        <div className="owl-carousel owl-theme blog-slider">
-                                            <img src="assets/images/blog/blog02.jpg" alt="blog" />
-                                            <img src="assets/images/blog/blog03.jpg" alt="blog" />
-                                            <img src="assets/images/blog/blog04.jpg" alt="blog" />
-                                            <img src="assets/images/blog/blog01.jpg" alt="blog" />
-                                        </div>
-                                        <div className="blog-prev">
-                                            <i className="flaticon-double-right-arrows-angles" />
-                                        </div>
-                                        <div className="blog-next active">
-                                            <i className="flaticon-double-right-arrows-angles" />
-                                        </div>
-                                    </div>
-                                    <div className="post-content">
-                                        <div className="post-header">
-                                            <h4 className="title">
-                                                <a href="blog-details.html">
-                                                    Factors To Take Into Consideration When You Want To Buy Tickets Online
-                                                </a>
-                                            </h4>
-                                            <div className="meta-post">
-                                                <a href="#0" className="mr-4"><i className="flaticon-conversation" />20 Comments</a>
-                                                <a href="#0"><i className="flaticon-view" />466 View</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac cursus leo. Nullam dolor nunc, hendrerit non velit id, pharetra viverra elit.
-                                            </p>
-                                        </div>
-                                        <div className="entry-content">
-                                            <div className="left">
-                                                <span className="date">Dece 15, 2020 BY </span>
-                                                <div className="authors">
-                                                    <div className="thumb">
-                                                        <a href="#0"><img src="assets/images/blog/author.jpg" alt="#0" /></a>
-                                                    </div>
-                                                    <h6 className="title"><a href="#0">Alvin Mcdaniel</a></h6>
-                                                </div>
-                                            </div>
-                                            <a href="#0" className="buttons">Read More <i className="flaticon-right" /></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post-item">
-                                    <div className="post-thumb">
-                                        <img src="assets/images/blog/blog03.jpg" alt="blog" />
-                                        <a href="https://www.youtube.com/embed/GT6-H4BRyqQ" className="video-button video-popup">
-                                            <i className="flaticon-play-button" />
-                                        </a>
-                                    </div>
-                                    <div className="post-content">
-                                        <div className="post-header">
-                                            <h4 className="title">
-                                                <a href="blog-details.html">
-                                                    Movie Ticket Prices: One Size Fits All? It's Time to Experiment
-                                                </a>
-                                            </h4>
-                                            <div className="meta-post">
-                                                <a href="#0" className="mr-4"><i className="flaticon-conversation" />20 Comments</a>
-                                                <a href="#0"><i className="flaticon-view" />466 View</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac cursus leo. Nullam dolor nunc, hendrerit non velit id, pharetra viverra elit.
-                                            </p>
-                                        </div>
-                                        <div className="entry-content">
-                                            <div className="left">
-                                                <span className="date">Dece 15, 2020 BY </span>
-                                                <div className="authors">
-                                                    <div className="thumb">
-                                                        <a href="#0"><img src="assets/images/blog/author.jpg" alt="#0" /></a>
-                                                    </div>
-                                                    <h6 className="title"><a href="#0">Alvin Mcdaniel</a></h6>
-                                                </div>
-                                            </div>
-                                            <a href="#0" className="buttons">Read More <i className="flaticon-right" /></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post-item">
-                                    <div className="post-thumb">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog04.jpg" alt="blog" />
-                                        </a>
-                                    </div>
-                                    <div className="post-content">
-                                        <div className="post-header">
-                                            <h4 className="title">
-                                                <a href="blog-details.html">
-                                                    Movie Ticket Prices: One Size Fits All? It's Time to Experiment
-                                                </a>
-                                            </h4>
-                                            <div className="meta-post">
-                                                <a href="#0" className="mr-4"><i className="flaticon-conversation" />20 Comments</a>
-                                                <a href="#0"><i className="flaticon-view" />466 View</a>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac cursus leo. Nullam dolor nunc, hendrerit non velit id, pharetra viverra elit.
-                                            </p>
-                                        </div>
-                                        <div className="entry-content">
-                                            <div className="left">
-                                                <span className="date">Dece 15, 2020 BY </span>
-                                                <div className="authors">
-                                                    <div className="thumb">
-                                                        <a href="#0"><img src="assets/images/blog/author.jpg" alt="#0" /></a>
-                                                    </div>
-                                                    <h6 className="title"><a href="#0">Alvin Mcdaniel</a></h6>
-                                                </div>
-                                            </div>
-                                            <a href="#0" className="buttons">Read More <i className="flaticon-right" /></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </>
+                                    )
+                                })}
+                               
                             </article>
                             <div className="pagination-area text-center">
                                 <a href="#0"><i className="fas fa-angle-double-left" /><span>Prev</span></a>

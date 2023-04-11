@@ -3,8 +3,30 @@ import Footer from '../Footer';
 import Header from '../Header';
 import PageLoader from '../PageLoader';
 import Ticket_Search from '../Ticket_Search';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Movies_Grid = () => {
+
+    const [moviename, setmoviename] = useState([]);
+    const [viewlike, setviewlike] = useState([]);
+    const [rating, setrating] = useState([]);
+
+    axios.get('http://localhost:2000/movieData', {
+
+    })
+        .then(function (response) {
+            // handle success
+            console.log(response.data.data);
+            setmoviename(response.data.data);
+            // window.location.href = "/Login"
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+
+
     return (
         <>
             {/* <PageLoader /> */}
@@ -168,355 +190,55 @@ const Movies_Grid = () => {
                                 <div className="tab-area">
                                     <div className="tab-item active">
                                         <div className="row mb-10 justify-content-center">
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie01.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">alone</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
+                                            {moviename.map((value) => {
+                                                return (
+                                                    <>
+
+                                                        <div className="col-sm-6 col-lg-4">
+                                                            <div className="movie-grid">
+                                                                <div className="movie-thumb c-thumb">
+                                                                    <a href="Movies_Detail">
+                                                                        <img src="assets/images/movie/movie01.jpg" alt="movie" />
+                                                                    </a>
                                                                 </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
+                                                                <div className="movie-content bg-one">
+                                                                    <h5 className="title m-0">
+                                                                        <a href="Movies_Detail">{value.moviename}</a>
+                                                                    </h5>
+                                                                    <ul className="movie-rating-percent">
+                                                                        <li>
+                                                                            <div className="thumb">
+                                                                                <img src="assets/images/movie/tomato.png" alt="movie" />
+                                                                            </div>
+                                                                            <span className="content">{value.viewlike}</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div className="thumb">
+                                                                                <img src="assets/images/movie/cake.png" alt="movie" />
+                                                                            </div>
+                                                                            <span className="content">{value.rating}</span>
+                                                                        </li>
+                                                                    </ul>
                                                                 </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie02.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">mars</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie03.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">venus</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie04.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">on watch</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie05.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">fury</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie06.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">trooper</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie07.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">horror night</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie08.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">the lost name</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie09.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">calm stedfast</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie10.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">criminal on party</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie11.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">halloween party</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="movie-grid">
-                                                    <div className="movie-thumb c-thumb">
-                                                        <a href="movie-details.html">
-                                                            <img src="assets/images/movie/movie12.jpg" alt="movie" />
-                                                        </a>
-                                                    </div>
-                                                    <div className="movie-content bg-one">
-                                                        <h5 className="title m-0">
-                                                            <a href="movie-details.html">the most wanted</a>
-                                                        </h5>
-                                                        <ul className="movie-rating-percent">
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/tomato.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                            <li>
-                                                                <div className="thumb">
-                                                                    <img src="assets/images/movie/cake.png" alt="movie" />
-                                                                </div>
-                                                                <span className="content">88%</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })}
+
                                         </div>
                                     </div>
                                     <div className="tab-item">
                                         <div className="movie-area mb-10">
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie01.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie01.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie01.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">alone</a>
+                                                        <a href="Movies_Detail">alone</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -572,13 +294,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie02.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie02.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie02.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">mars</a>
+                                                        <a href="Movies_Detail">mars</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -634,13 +356,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie03.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie03.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie03.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">venus</a>
+                                                        <a href="Movies_Detail">venus</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -696,13 +418,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie04.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie04.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie04.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">on watch</a>
+                                                        <a href="Movies_Detail">on watch</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -758,13 +480,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie05.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie05.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie05.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">fury</a>
+                                                        <a href="Movies_Detail">fury</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -820,13 +542,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie06.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie06.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie06.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">trooper</a>
+                                                        <a href="Movies_Detail">trooper</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -882,13 +604,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie07.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie07.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie07.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">horror night</a>
+                                                        <a href="Movies_Detail">horror night</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -944,13 +666,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie08.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie08.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie08.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">the lost name</a>
+                                                        <a href="Movies_Detail">the lost name</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -1006,13 +728,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie09.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie09.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie09.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">calm stedfast</a>
+                                                        <a href="Movies_Detail">calm stedfast</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -1068,13 +790,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie10.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie10.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie10.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">criminal on party</a>
+                                                        <a href="Movies_Detail">criminal on party</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -1130,13 +852,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie11.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie11.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie11.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">halloween party</a>
+                                                        <a href="Movies_Detail">halloween party</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">
@@ -1192,13 +914,13 @@ const Movies_Grid = () => {
                                             </div>
                                             <div className="movie-list">
                                                 <div className="movie-thumb c-thumb">
-                                                    <a href="movie-details.html" className="w-100 bg_img h-100" data-background="assets/images/movie/movie12.jpg">
+                                                    <a href="Movies_Detail" className="w-100 bg_img h-100" data-background="assets/images/movie/movie12.jpg">
                                                         <img className="d-sm-none" src="assets/images/movie/movie12.jpg" alt="movie" />
                                                     </a>
                                                 </div>
                                                 <div className="movie-content bg-one">
                                                     <h5 className="title">
-                                                        <a href="movie-details.html">the most wanted</a>
+                                                        <a href="Movies_Detail">the most wanted</a>
                                                     </h5>
                                                     <p className="duration">2hrs 50 min</p>
                                                     <div className="movie-tags">

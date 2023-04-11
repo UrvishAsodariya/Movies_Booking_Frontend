@@ -3,9 +3,65 @@ import Footer from '../Footer';
 import Header from '../Header';
 import PageLoader from '../PageLoader';
 import Ticket_Search from '../Ticket_Search';
+import { useState } from 'react';
+import axios from 'axios';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
+
+  const [moviename, setmoviename] = useState([]);
+  const [viewlike, setviewlike] = useState([]);
+  const [rating, setrating] = useState([]);
+  const [eventname, seteventname] = useState([]);
+  const [date, setdate] = useState([]);
+  const [address, setaddress] = useState([]);
+  const [month, setmonth] = useState([]);
+  const [sportname, setsportname] = useState([]);
+  const [description, setdescription] = useState([]);
+
+  axios.get('http://localhost:2000/movieData', {
+
+  })
+    .then(function (response) {
+      // handle success
+      console.log(response.data.data);
+      setmoviename(response.data.data);
+      // window.location.href = "/Login"
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+
+  axios.get('http://localhost:2000/eventdata', {
+
+  })
+    .then(function (response) {
+      // handle success
+      console.log(response.data.data);
+      seteventname(response.data.data);
+      // window.location.href = "/Login"
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+
+  axios.get('http://localhost:2000/sportdata', {
+
+  })
+    .then(function (response) {
+      // handle success
+      console.log(response.data.data);
+      setsportname(response.data.data);
+      // window.location.href = "/Login"
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+
   return (
     <div>
       <Header />
@@ -36,7 +92,7 @@ const Home = () => {
       </section>
       {/* ==========Banner-Section========== */}
 
-      <Ticket_Search/>
+      <Ticket_Search />
 
       {/* ==========Movie-Main-Section========== */}
       <section className="movie-section padding-top padding-bottom bg-two">
@@ -117,235 +173,119 @@ const Home = () => {
               <div className="article-section padding-bottom">
                 <div className="section-header-1">
                   <h2 className="title">movies</h2>
-                  <a className="view-all" href="movie-grid.html">View All</a>
+                  <a className="view-all" href="Movies_Grid">View All</a>
                 </div>
                 <div className="row mb-30-none justify-content-center">
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="movie-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/movie/movie01.jpg" alt="movie" />
-                        </a>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">alone</a>
-                        </h5>
-                        <ul className="movie-rating-percent">
-                          <li>
-                            <div className="thumb">
-                              <img src="assets/images/movie/tomato.png" alt="movie" />
+                  {moviename.map((value) => {
+                    return (
+                      <>
+                        <div className="col-sm-6 col-lg-4">
+                          <div className="movie-grid">
+                            <div className="movie-thumb c-thumb">
+                              <a href="#0">
+                                <img src="assets/images/movie/movie01.jpg" alt="movie" />
+                              </a>
                             </div>
-                            <span className="content">88%</span>
-                          </li>
-                          <li>
-                            <div className="thumb">
-                              <img src="assets/images/movie/cake.png" alt="movie" />
+                            <div className="movie-content bg-one">
+                              <h5 className="title m-0">
+                                <a href="#0">{value.moviename}</a>
+                              </h5>
+                              <ul className="movie-rating-percent">
+                                <li>
+                                  <div className="thumb">
+                                    <img src="assets/images/movie/tomato.png" alt="movie" />
+                                  </div>
+                                  <span className="content">{value.viewlike}</span>
+                                </li>
+                                <li>
+                                  <div className="thumb">
+                                    <img src="assets/images/movie/cake.png" alt="movie" />
+                                  </div>
+                                  <span className="content">{value.rating}</span>
+                                </li>
+                              </ul>
                             </div>
-                            <span className="content">88%</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="movie-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/movie/movie02.jpg" alt="movie" />
-                        </a>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">mars</a>
-                        </h5>
-                        <ul className="movie-rating-percent">
-                          <li>
-                            <div className="thumb">
-                              <img src="assets/images/movie/tomato.png" alt="movie" />
-                            </div>
-                            <span className="content">88%</span>
-                          </li>
-                          <li>
-                            <div className="thumb">
-                              <img src="assets/images/movie/cake.png" alt="movie" />
-                            </div>
-                            <span className="content">88%</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="movie-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/movie/movie03.jpg" alt="movie" />
-                        </a>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">venus</a>
-                        </h5>
-                        <ul className="movie-rating-percent">
-                          <li>
-                            <div className="thumb">
-                              <img src="assets/images/movie/tomato.png" alt="movie" />
-                            </div>
-                            <span className="content">88%</span>
-                          </li>
-                          <li>
-                            <div className="thumb">
-                              <img src="assets/images/movie/cake.png" alt="movie" />
-                            </div>
-                            <span className="content">88%</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                          </div>
+                        </div>
+
+                      </>
+                    )
+                  })}
                 </div>
               </div>
               <div className="article-section padding-bottom">
                 <div className="section-header-1">
                   <h2 className="title">events</h2>
-                  <a className="view-all" href="events.html">View All</a>
+                  <a className="view-all" href="Events">View All</a>
                 </div>
                 <div className="row mb-30-none justify-content-center">
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="event-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/event/event01.jpg" alt="event" />
-                        </a>
-                        <div className="event-date">
-                          <h6 className="date-title">28</h6>
-                          <span>Dec</span>
+                  {eventname.map((value) => {
+                    return (
+                      <>
+
+                        <div className="col-sm-6 col-lg-4">
+                          <div className="event-grid">
+                            <div className="movie-thumb c-thumb">
+                              <a href="#0">
+                                <img src="assets/images/event/event01.jpg" alt="event" />
+                              </a>
+                              <div className="event-date">
+                                <h6 className="date-title">{value.date}</h6>
+                                <span>{value.month}</span>
+                              </div>
+                            </div>
+                            <div className="movie-content bg-one">
+                              <h5 className="title m-0">
+                                <a href="#0">{value.eventname}</a>
+                              </h5>
+                              <div className="movie-rating-percent">
+                                <span>{value.address}</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">Digital Economy Conference 2020</a>
-                        </h5>
-                        <div className="movie-rating-percent">
-                          <span>327 Montague Street</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="event-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/event/event02.jpg" alt="event" />
-                        </a>
-                        <div className="event-date">
-                          <h6 className="date-title">28</h6>
-                          <span>Dec</span>
-                        </div>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">web design conference 2020</a>
-                        </h5>
-                        <div className="movie-rating-percent">
-                          <span>327 Montague Street</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="event-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/event/event03.jpg" alt="event" />
-                        </a>
-                        <div className="event-date">
-                          <h6 className="date-title">28</h6>
-                          <span>Dec</span>
-                        </div>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">digital thinkers meetup</a>
-                        </h5>
-                        <div className="movie-rating-percent">
-                          <span>327 Montague Street</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                      </>
+                    )
+                  })}
+
+
+
                 </div>
               </div>
               <div className="article-section">
                 <div className="section-header-1">
                   <h2 className="title">sports</h2>
-                  <a className="view-all" href="sports.html">View All</a>
+                  <a className="view-all" href="Sports">View All</a>
                 </div>
                 <div className="row mb-30-none justify-content-center">
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="sports-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/sports/sports01.jpg" alt="sports" />
-                        </a>
-                        <div className="event-date">
-                          <h6 className="date-title">28</h6>
-                          <span>Dec</span>
+                  {sportname.map((value) => {
+                    return (
+                      <>
+                        <div className="col-sm-6 col-lg-4">
+                          <div className="sports-grid">
+                            <div className="movie-thumb c-thumb">
+                              <a href="#0">
+                                <img src="assets/images/sports/sports01.jpg" alt="sports" />
+                              </a>
+                              <div className="event-date">
+                                <h6 className="date-title">{value.date}</h6>
+                                <span>{value.month}</span>
+                              </div>
+                            </div>
+                            <div className="movie-content bg-one">
+                              <h5 className="title m-0">
+                                <a href="#0">{value.sportname}</a>
+                              </h5>
+                              <div className="movie-rating-percent">
+                                <span>{value.address}</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">football league tournament</a>
-                        </h5>
-                        <div className="movie-rating-percent">
-                          <span>327 Montague Street</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="sports-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/sports/sports02.jpg" alt="sports" />
-                        </a>
-                        <div className="event-date">
-                          <h6 className="date-title">28</h6>
-                          <span>Dec</span>
-                        </div>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">world cricket league 2020</a>
-                        </h5>
-                        <div className="movie-rating-percent">
-                          <span>327 Montague Street</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="sports-grid">
-                      <div className="movie-thumb c-thumb">
-                        <a href="#0">
-                          <img src="assets/images/sports/sports03.jpg" alt="sports" />
-                        </a>
-                        <div className="event-date">
-                          <h6 className="date-title">28</h6>
-                          <span>Dec</span>
-                        </div>
-                      </div>
-                      <div className="movie-content bg-one">
-                        <h5 className="title m-0">
-                          <a href="#0">basket ball tournament 2020</a>
-                        </h5>
-                        <div className="movie-rating-percent">
-                          <span>327 Montague Street</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+                      </>
+                    )
+                  })}
                 </div>
               </div>
             </div>

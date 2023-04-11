@@ -1,7 +1,32 @@
 import React from 'react'
 import PageLoader from '../PageLoader'
+import axios from 'axios';
+import { useState } from 'react';
 
 const Signup = () => {
+
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+    const [cpassword, setcpassword] = useState('');
+
+    const btnhandle = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:2000/signup', {
+           email:email,
+           password:password,
+           cpassword:cpassword
+        })
+            .then(function (response) {
+                // handle success
+                console.log(response);
+                // window.location.href = "/Login"
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    }
+
     return (
         <>
             {/* <PageLoader /> */}
@@ -14,18 +39,18 @@ const Signup = () => {
                                 <span className="cate">welcome</span>
                                 <h2 className="title">to Boleto </h2>
                             </div>
-                            <form className="account-form">
+                            <form className="account-form" onSubmit={btnhandle}>
                                 <div className="form-group">
                                     <label htmlFor="email1">Email<span>*</span></label>
-                                    <input type="text" placeholder="Enter Your Email" id="email1" required />
+                                    <input type="text" placeholder="Enter Your Email" id="email" required onChange={(e) => { setemail(e.target.value) }}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="pass1">Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" id="pass1" required />
+                                    <input type="password" placeholder="Password" id="pass1" required onChange={(e) => { setpassword(e.target.value) }}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="pass2">Confirm Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" id="pass2" required />
+                                    <input type="password" placeholder="Conform Password" id="pass2" required onChange={(e) => { setcpassword(e.target.value) }}/>
                                 </div>
                                 <div className="form-group checkgroup">
                                     <input type="checkbox" id="bal" required defaultChecked />
